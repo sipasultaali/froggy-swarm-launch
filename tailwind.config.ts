@@ -27,6 +27,12 @@ export default {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
+        vintage: {
+          gold: "hsl(var(--vintage-gold))",
+          brown: "hsl(var(--vintage-brown))",
+          green: "hsl(var(--vintage-green))",
+          cream: "hsl(var(--vintage-cream))",
+        },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
@@ -57,6 +63,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      backgroundImage: {
+        "gradient-hero": "var(--gradient-hero)",
+        "gradient-gold": "var(--gradient-gold)",
+        "gradient-green": "var(--gradient-green)",
       },
       borderRadius: {
         lg: "var(--radius)",

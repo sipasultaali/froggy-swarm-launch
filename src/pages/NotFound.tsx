@@ -9,12 +9,19 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-hero">
       <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-gray-600">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 underline hover:text-blue-700">
-          Return to Home
+        <div className="text-8xl mb-6">🐸</div>
+        <h1 className="mb-4 text-6xl font-bold text-vintage-gold">404</h1>
+        <p className="mb-8 text-2xl text-vintage-cream">Ribbit! This page hopped away!</p>
+        <p className="mb-8 text-lg text-vintage-cream/80">
+          Looks like you've wandered off the lily pad. Let's get you back to the swamp!
+        </p>
+        <a 
+          href="/" 
+          className="inline-flex items-center gap-2 bg-gradient-gold text-vintage-brown px-8 py-4 rounded-lg font-bold text-lg hover:scale-105 transition-transform shadow-lg border-2 border-vintage-brown"
+        >
+          🏠 Return to Gang Headquarters
         </a>
       </div>
     </div>
