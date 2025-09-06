@@ -7,38 +7,42 @@ import Footer from "@/components/Footer";
 const Index = () => {
   useEffect(() => {
     let isScrollingDown = true;
+    let scrollInterval: NodeJS.Timeout;
     
-    const autoScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight;
-      const clientHeight = document.documentElement.clientHeight;
-      const maxScroll = scrollHeight - clientHeight;
-      
-      if (isScrollingDown) {
-        // Scroll to bottom
-        window.scrollTo({
-          top: maxScroll,
-          behavior: 'smooth'
-        });
-        isScrollingDown = false;
-      } else {
-        // Scroll to top
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-        isScrollingDown = true;
-      }
+    const startAutoScroll = () => {
+      scrollInterval = setInterval(() => {
+        const currentScroll = window.pageYOffset;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        
+        if (isScrollingDown) {
+          // Scroll down gradually
+          if (currentScroll >= maxScroll) {
+            // Reached bottom, switch to scroll up
+            isScrollingDown = false;
+          } else {
+            window.scrollBy(0, 2); // Scroll down 2 pixels at a time
+          }
+        } else {
+          // Scroll up gradually
+          if (currentScroll <= 0) {
+            // Reached top, switch to scroll down
+            isScrollingDown = true;
+          } else {
+            window.scrollBy(0, -2); // Scroll up 2 pixels at a time
+          }
+        }
+      }, 20); // Update every 20ms for smooth scrolling
     };
     
-    // Start auto-scroll after 3 seconds, then repeat every 8 seconds
-    const initialTimeout = setTimeout(() => {
-      autoScroll();
-      const interval = setInterval(autoScroll, 8000);
-      
-      return () => clearInterval(interval);
-    }, 3000);
+    // Start auto-scroll after 3 seconds
+    const initialTimeout = setTimeout(startAutoScroll, 3000);
     
-    return () => clearTimeout(initialTimeout);
+    return () => {
+      clearTimeout(initialTimeout);
+      if (scrollInterval) {
+        clearInterval(scrollInterval);
+      }
+    };
   }, []);
 
   return (
